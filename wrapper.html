@@ -1,0 +1,66 @@
+(문법) jQuery(엘리먼트 오브젝트 | 'CSS스타일 선택자') <br>
+ --> 엘리먼트 오브젝트 : (DOM) document.getElementByID 등으로 리턴된 객체
+ --> CSS 선택자 : #, . ,
+
+ <h3>레퍼의 안전한 사용</h3>
+$(엘리먼트) 와 jQuery(엘리먼트)는  같은 의미이지만 $를 사용하는 다른 라이브러리들과의 충돌 때문에 다음과 같은 방법을 사용한다.
+<br>
+1. $ 대신 jQuery를 사용 <br>
+<script type="text/javascript">
+
+jQuery('body').html('hello world');
+</script>
+
+
+2. //$를 함수의 지역변수로 선언해서 외부에 있을지 모르는 타 라이브러리의 $와의 충돌을 예방 <br>
+<script type="text/javascript">
+
+(function($){
+    $('body').html('hello world');
+})(jQuery)
+</script>
+<br>
+
+<h3>제어대상을 지정하는 방법</h3>
+1. (문법) jQuery(selector, [context])
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <ul>
+      <li>test2</li>
+    </ul>
+    <ul class="foo">
+      <li>test1</li>
+    </ul>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" ></script>
+      <script type="text/javascript">
+        (function($){
+          $('ul.foo').click(function(){
+            $('li', this).css('background-color', 'red');
+          });
+        })(jQuery);
+      </script>
+  </body>
+</html>
+ <br>
+ 2.(문법) jQuery(엘리먼트)
+
+ <!DOCTYPE html>
+ <html lang="en" dir="ltr">
+   <head>
+     <meta charset="utf-8">
+     <title></title>
+   </head>
+   <body>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" ></script>
+     <script type="text/javascript">
+       jQuery(document.body).css('background-color', 'yellow');  //jQuery(body).css... 즉, body는 document 자손 중하나임으로 document 생략 무방
+
+     </script>
+   </body>
+ </html>

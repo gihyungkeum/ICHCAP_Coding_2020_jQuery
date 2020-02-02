@@ -1,0 +1,197 @@
+<h2><a href="https://api.jquery.com/category/manipulation/">엘리먼트 제어</a></h2>
+# 아래 각 코드 하나씩 실행할 것, 중복시 간섭 발생
+
+
+<h3>자식으로 삽입 (.append(), .appendTo(), .html(), .prepend(), .prependTo(), .text())</h3>
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <style>
+        p {
+            background:yellow;
+        }
+    </style>
+  </head>
+  <body>
+        <p>
+            I would like to say:
+        </p>
+      <script>
+        $("p").append("<strong>Hello</strong>");
+      </script>
+    </body>
+</html>
+
+
+<h3>형제로 삽입(.after(), .before(), .insertAfter(), .insertBefore())</h3>
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <style>
+        p {
+            background:yellow;
+        }
+    </style>
+  </head>
+  <body>
+        <p>
+            I would like to say:
+        </p>
+      <script>
+        $("p").after("<strong>Hello!</strong>");
+      </script>
+    </body>
+</html>
+
+<h3>부모로 감싸기(.wrap(), .unwrap(), .wrapAll(), .wrapInner()</h3>
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <style>
+        div{
+          border: 2px blue solid;
+          margin: 2px;
+          padding: 2px;
+        }
+        p {
+            background:yellow;
+            margin: 2px;
+            padding: 2px;
+        }
+        strong{
+          color: red;
+        }
+    </style>
+  </head>
+  <body>
+      <span>Span Text</span>
+      <strong>What about me?</strong>
+      <span>Another one</span>
+      <script>
+        $("span").wrap("<div><div><p><em><b></b></em></p></div></div>");
+      </script>
+    </body>
+</html>
+
+<h3>삭제 (.detach(), .empty(), .remove(), .unwrap())</h3>
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            p {
+                background:yellow;
+                margin:6px 0;
+            }
+        </style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    </head>
+    <body>
+        <p>
+            Hello
+        </p>
+        how are
+        <p>
+            you?
+        </p>
+        <button>
+            Call remove() on paragraphs
+        </button>
+        <script>
+            $("button").click( function () {
+                $("p").remove();
+            });
+        </script>
+    </body>
+</html>
+
+<h3>치환 (.replaceAll(), .replaceWith())</h3>
+
+<!DOCTYPE html>
+<html>
+    <head>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    </head>
+    <body>
+        <p> Hello </p>
+        <p> cruel </p>
+        <p> world </p>
+        <script>
+            $("<b>Paragraph</b>").replaceAll("p");     // <b>Paragraph</b>는 선택자가 아니라 html 문법으로 작성된 엘리먼트로 래퍼에 의해 치환될 내용
+            $("<b>Paragraph2</b>").replaceWith("p");
+        </script>
+    </body>
+</html>
+
+
+<h3>클래스 (.addClass(), .hasClass(), .removeClass(), .toggleClass())</h3>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+      p{
+        margin: 4px;
+        font-size: 16px;
+        font-weight: bolder;
+        cursor: pointer;
+      }
+      .blue{
+        color:blue;
+      }
+      .highlight{
+        background: yellow;
+      }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <p class='blue'>Click to toggle</p>
+    <p class='blue highlight'>highlight</p>
+    <p class='blue'>on these</p>
+    <p class='blue'>paragraphs</p>
+    <script>
+      $("p").click(function(){
+        $(this).toggleClass("highlight");
+      });
+    </script>
+  </body>
+</html>
+
+<h2>속성제어 (.attr(), .prop(), .removeAttr(), .removeProp(), .val())</h2>
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>p {
+                color:blue;
+                margin:8px;
+            }
+        </style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <input type="text" value="some text"/>
+        <p>
+        </p>
+        <script>$("input").keyup( function () {
+                var value = $(this).val();
+                $("p").text(value);
+            }).keyup();</script>
+    </body>
+</html>

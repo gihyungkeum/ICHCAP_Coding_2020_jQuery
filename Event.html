@@ -1,0 +1,62 @@
+<h2><a href="https://opentutorials.org/course/53/56">event 란?</a></h2>
+<ul>
+  <li>클릭, 마우스이동, 타이핑 등 브라우져에서 일어나는 사건</li>
+  <li>이벤트 발생시 작동할 로직을 시스템에 알려주면 이벤트 발생시 시스템이 해당 로직을 호출</li>
+  <li>jquery 이벤트는 크로스브라우징을 해결</li>
+  <li>bind로 이벤트 핸들러 설치하고, unbind로 제거</li>
+  <li>trigger로 이벤트 핸들러 강제로 실행</li>
+  <li>click, ready와 같은 이벤트 헬퍼 제공</li>
+  <li>live 사용시 현재 존재 하지 않는 엘리먼트에 이벤트핸들러 설치할 수 있음</li>
+</ul>
+
+
+<h3>bind, unbind, ready, trigger를 이용한 이벤트 설치, 제거, 호출--> on, off, triger로 대체</h3>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript">
+
+      function clickHandler(){
+              alert('thank you');
+           }
+           $(document).on('click', function(){
+          $('#click_me').on('click', clickHandler);
+          $('#remove_event').on('click', function(){
+            $('#click_me').off('click', clickHandler);
+            });
+          $('#trigger_event').on('click', function(){
+            $('#click_me').trigger('click');
+              });
+            })
+    </script>
+  </head>
+  <body>
+    <input id="click_me" type="button" value="click me" />
+    <input id="remove_event" type="button" value="unbind" />
+    <input id="trigger_event" type="button" value="trigger" />
+  </body>
+</html>
+
+
+<p>
+# 생코에서 사용된 bind, unbind, live, die, reay 메소드는 jquery 1.7 버전이후 일괄적으로 on, off로 대체..>jquery api  on click 참조 </p>
+<p># 또한 function clickHandler(e)....에서 e는 event를 의미하며 관습적으로 쓰기도 하지만,  function clickHandler()와 같이 없어도 무방</p>
+
+<p>
+    function clickHandler(e){     <br>
+              alert('thank you');   <br>
+          }    <br>
+          $(document).bind('ready', function(){   <br>
+               $('#click_me').bind('click', clickHandler);  <br>
+               $('#remove_event').bind('click', function(e){    <br>
+                   $('#click_me').unbind('click', clickHandler);    <br>
+               });   <br>
+               $('#trigger_event').bind('click', function(e){   <br>
+                   $('#click_me').trigger('click');   <br>
+               });    <br>
+           })  <br>
+
+           </p>
